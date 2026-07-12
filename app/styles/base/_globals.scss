@@ -1,0 +1,268 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
+
+/* ==========================================================================
+   ROOT
+   ========================================================================== */
+
+:root {
+  /* Layout */
+  --container: #{$container};
+  --navbar-height: #{$navbar-height};
+  --toolrail-width: #{$toolrail-width};
+
+  /* Radius */
+  --radius-xs: #{$radius-xs};
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --radius-xl: #{$radius-xl};
+  --radius-full: #{$radius-full};
+
+  /* Animation */
+  --ease: #{$ease};
+
+  --transition-fast: #{$transition-fast};
+  --transition-base: #{$transition-base};
+  --transition-slow: #{$transition-slow};
+
+  /* Blur */
+  --blur-sm: #{$blur-sm};
+  --blur-md: #{$blur-md};
+  --blur-lg: #{$blur-lg};
+
+  /* Shadows */
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+
+  /* Accent */
+
+  --accent: #6366f1;
+  --accent-rgb: 99, 102, 241;
+
+  /* Theme */
+
+  --bg: #08090b;
+  --surface: #111318;
+  --surface-2: #1a1d24;
+
+  --text: #f5f5f5;
+  --text-muted: #9ca3af;
+
+  --border: rgba(255, 255, 255, 0.08);
+
+  --glass: rgba(255, 255, 255, 0.05);
+
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   LIGHT THEME
+   ========================================================================== */
+
+[data-theme="light"] {
+  --bg: #ffffff;
+
+  --surface: #f6f7fb;
+
+  --surface-2: #eceff4;
+
+  --text: #111827;
+
+  --text-muted: #6b7280;
+
+  --border: rgba(0, 0, 0, 0.08);
+
+  --glass: rgba(255, 255, 255, 0.8);
+
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   HTML
+   ========================================================================== */
+
+html {
+  background: var(--bg);
+
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   BODY
+   ========================================================================== */
+
+body {
+  background: var(--bg);
+
+  color: var(--text);
+
+  font-family: $font-sans;
+
+  font-size: $fs-md;
+
+  line-height: 1.6;
+
+  overflow-x: hidden;
+
+  min-height: 100vh;
+
+  position: relative;
+}
+
+/* ==========================================================================
+   APP
+   ========================================================================== */
+
+#__next,
+main {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   SECTION
+   ========================================================================== */
+
+section {
+  position: relative;
+
+  width: 100%;
+
+  padding-block: clamp(5rem, 10vw, 10rem);
+}
+
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+
+.container {
+  width: min(calc(100% - 3rem), var(--container));
+
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   GRID BACKGROUND
+   ========================================================================== */
+
+.canvas-grid {
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+
+  background-size: 48px 48px;
+}
+
+/* ==========================================================================
+   GRAIN
+   ========================================================================== */
+
+.grain {
+  position: fixed;
+
+  inset: -200%;
+
+  pointer-events: none;
+
+  z-index: 2;
+
+  opacity: 0.05;
+
+  background-image: url("/noise.png");
+
+  animation: grain 8s steps(10) infinite;
+}
+
+/* ==========================================================================
+   CANVAS
+   ========================================================================== */
+
+canvas {
+  display: block;
+}
+
+/* ==========================================================================
+   MEDIA
+   ========================================================================== */
+
+img,
+video {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+}
+
+/* ==========================================================================
+   LINKS
+   ========================================================================== */
+
+a {
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: rgb(var(--accent-rgb));
+}
+
+/* ==========================================================================
+   SELECTION
+   ========================================================================== */
+
+::selection {
+  background: rgba(var(--accent-rgb), 0.25);
+
+  color: white;
+}
+
+/* ==========================================================================
+   HELPERS
+   ========================================================================== */
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+/* ==========================================================================
+   SCROLL LOCK
+   ========================================================================== */
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   SMOOTH
+   ========================================================================== */
+
+.smooth {
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-base);
+}

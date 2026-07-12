@@ -1,0 +1,370 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+
+.container {
+  width: min(100% - 3rem, $container);
+  margin-inline: auto;
+}
+
+.container-sm {
+  width: min(100% - 3rem, 960px);
+  margin-inline: auto;
+}
+
+.container-lg {
+  width: min(100% - 3rem, 1600px);
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   DISPLAY
+   ========================================================================== */
+
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   FLEX
+   ========================================================================== */
+
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   GAP
+   ========================================================================== */
+
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-3 {
+  gap: 0.75rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-5 {
+  gap: 1.25rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+
+/* ==========================================================================
+   POSITION
+   ========================================================================== */
+
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.sticky {
+  position: sticky;
+}
+
+/* ==========================================================================
+   WIDTH
+   ========================================================================== */
+
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   TEXT
+   ========================================================================== */
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.mono {
+  font-family: $font-mono;
+}
+
+/* ==========================================================================
+   RADIUS
+   ========================================================================== */
+
+.rounded {
+  border-radius: $radius-md;
+}
+
+.rounded-lg {
+  border-radius: $radius-lg;
+}
+
+.rounded-xl {
+  border-radius: $radius-xl;
+}
+
+.rounded-full {
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   SHADOW
+   ========================================================================== */
+
+.shadow {
+  box-shadow: $shadow-md;
+}
+
+.shadow-lg {
+  box-shadow: $shadow-lg;
+}
+
+/* ==========================================================================
+   GLASS
+   ========================================================================== */
+
+.glass {
+  @include glass();
+}
+
+/* ==========================================================================
+   OVERFLOW
+   ========================================================================== */
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+/* ==========================================================================
+   OPACITY
+   ========================================================================== */
+
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-25 {
+  opacity: 0.25;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
+.opacity-100 {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   CURSOR
+   ========================================================================== */
+
+.pointer {
+  cursor: pointer;
+}
+
+.no-select {
+  user-select: none;
+}
+
+/* ==========================================================================
+   Z INDEX
+   ========================================================================== */
+
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-20 {
+  z-index: 20;
+}
+.z-50 {
+  z-index: 50;
+}
+.z-100 {
+  z-index: 100;
+}
+
+/* ==========================================================================
+   REVEAL
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal[data-delay="1"] {
+  transition-delay: 0.1s;
+}
+
+.reveal[data-delay="2"] {
+  transition-delay: 0.2s;
+}
+
+.reveal[data-delay="3"] {
+  transition-delay: 0.3s;
+}
+
+.reveal[data-delay="4"] {
+  transition-delay: 0.4s;
+}
+
+/* ==========================================================================
+   SPACING
+   ========================================================================== */
+
+.mt-auto {
+  margin-top: auto;
+}
+.mb-auto {
+  margin-bottom: auto;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.py-section {
+  padding-block: clamp(6rem, 10vw, 10rem);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+.mobile-only {
+  display: none;
+}
+
+@include tablet {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}

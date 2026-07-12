@@ -1,0 +1,159 @@
+@use "sass:math";
+@use "sass:color";
+@use "variables" as *;
+
+/* ==========================================================================
+   PX TO REM
+   ========================================================================== */
+
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+/* ==========================================================================
+   PX TO EM
+   ========================================================================== */
+
+@function em($px, $base: 16) {
+  @return math.div($px, $base) * 1em;
+}
+
+/* ==========================================================================
+   SPACING
+   ========================================================================== */
+
+@function space($step) {
+  $spaces: (
+    0: $space-0,
+    1: $space-1,
+    2: $space-2,
+    3: $space-3,
+    4: $space-4,
+    5: $space-5,
+    6: $space-6,
+    8: $space-8,
+    10: $space-10,
+    12: $space-12,
+    16: $space-16,
+    20: $space-20,
+    24: $space-24,
+    32: $space-32,
+  );
+
+  @return map-get($spaces, $step);
+}
+
+/* ==========================================================================
+   Z INDEX
+   ========================================================================== */
+
+@function z($layer) {
+  $layers: (
+    grid: $z-grid,
+    content: $z-content,
+    navbar: $z-navbar,
+    toolrail: $z-toolrail,
+    cursor: $z-cursor,
+    loader: $z-loader,
+    modal: $z-modal,
+  );
+
+  @return map-get($layers, $layer);
+}
+
+/* ==========================================================================
+   FONT WEIGHT
+   ========================================================================== */
+
+@function weight($type) {
+  $weights: (
+    light: $fw-light,
+    regular: $fw-regular,
+    medium: $fw-medium,
+    semibold: $fw-semibold,
+    bold: $fw-bold,
+    black: $fw-black,
+  );
+
+  @return map-get($weights, $type);
+}
+
+/* ==========================================================================
+   BORDER RADIUS
+   ========================================================================== */
+
+@function radius($size) {
+  $radii: (
+    xs: $radius-xs,
+    sm: $radius-sm,
+    md: $radius-md,
+    lg: $radius-lg,
+    xl: $radius-xl,
+    2xl: $radius-2xl,
+    full: $radius-full,
+  );
+
+  @return map-get($radii, $size);
+}
+
+/* ==========================================================================
+   SHADOW
+   ========================================================================== */
+
+@function shadow($size) {
+  $shadows: (
+    sm: $shadow-sm,
+    md: $shadow-md,
+    lg: $shadow-lg,
+    glow: $shadow-glow,
+  );
+
+  @return map-get($shadows, $size);
+}
+
+/* ==========================================================================
+   LIGHTEN
+   ========================================================================== */
+
+@function lighten-color($color, $amount: 10%) {
+  @return color.scale($color, $lightness: $amount);
+}
+
+/* ==========================================================================
+   DARKEN
+   ========================================================================== */
+
+@function darken-color($color, $amount: 10%) {
+  @return color.scale($color, $lightness: -$amount);
+}
+
+/* ==========================================================================
+   ALPHA
+   ========================================================================== */
+
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+/* ==========================================================================
+   STRIP UNIT
+   ========================================================================== */
+
+@function strip-unit($number) {
+  @if math.is-unitless($number) {
+    @return $number;
+  }
+
+  @return math.div($number, ($number * 0 + 1));
+}
+
+/* ==========================================================================
+   FLUID CLAMP
+   ========================================================================== */
+
+@function fluid($min, $max, $min-width: 375, $max-width: 1440) {
+  $slope: math.div(($max - $min), ($max-width - $min-width));
+  $intercept: $min - ($slope * $min-width);
+
+  @return clamp(#{$min}px, #{$intercept}px + #{$slope * 100}vw, #{$max}px);
+}

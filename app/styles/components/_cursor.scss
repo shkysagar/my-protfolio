@@ -1,0 +1,197 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   CURSOR
+   ========================================================================== */
+
+.cursor {
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: $z-cursor;
+
+  user-select: none;
+
+  mix-blend-mode: difference;
+
+  @media (pointer: coarse) {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   DOT
+   ========================================================================== */
+
+.cursor__dot {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 8px;
+  height: 8px;
+
+  margin-left: -4px;
+  margin-top: -4px;
+
+  border-radius: 50%;
+
+  background: rgb(var(--accent-rgb));
+
+  transition:
+    transform 0.08s linear,
+    background 0.3s ease;
+
+  will-change: transform;
+}
+
+/* ==========================================================================
+   RING
+   ========================================================================== */
+
+.cursor__ring {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 42px;
+  height: 42px;
+
+  margin-left: -21px;
+  margin-top: -21px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+
+  will-change: top, left;
+}
+
+/* ==========================================================================
+   LABEL
+   ========================================================================== */
+
+.cursor__label {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  transform: translate(-50%, 28px);
+
+  padding: 0.35rem 0.75rem;
+
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  backdrop-filter: blur(10px);
+
+  color: #fff;
+
+  font-size: 0.72rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  will-change: transform;
+}
+
+/* ==========================================================================
+   ACTIVE
+   ========================================================================== */
+
+.cursor.is-active {
+  .cursor__ring {
+    width: 72px;
+    height: 72px;
+
+    margin-left: -36px;
+    margin-top: -36px;
+
+    border-color: rgb(var(--accent-rgb));
+
+    background: rgba(var(--accent-rgb), 0.12);
+  }
+
+  .cursor__dot {
+    transform: scale(0.4);
+  }
+
+  .cursor__label {
+    opacity: 1;
+
+    transform: translate(-50%, 40px);
+  }
+}
+
+/* ==========================================================================
+   CLICK
+   ========================================================================== */
+
+.cursor.is-clicking {
+  .cursor__ring {
+    transform: scale(0.82);
+  }
+
+  .cursor__dot {
+    transform: scale(1.6);
+  }
+}
+
+/* ==========================================================================
+   HIDDEN
+   ========================================================================== */
+
+.cursor.is-hidden {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   ACCENT
+   ========================================================================== */
+
+.cursor.is-accent {
+  .cursor__dot {
+    background: rgb(var(--accent-rgb));
+  }
+
+  .cursor__ring {
+    border-color: rgb(var(--accent-rgb));
+  }
+}
+
+/* ==========================================================================
+   TRANSITIONS
+   ========================================================================== */
+
+.cursor__dot,
+.cursor__ring,
+.cursor__label {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}

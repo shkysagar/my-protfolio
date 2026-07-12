@@ -1,0 +1,203 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   TIMELINE / SCRUBBER
+   ========================================================================== */
+
+.scrubber {
+  position: fixed;
+
+  left: 50%;
+  bottom: 2rem;
+
+  transform: translateX(-50%) translateY(40px);
+
+  width: min(1200px, calc(100% - 4rem));
+
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  padding: 0.9rem 1.2rem;
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  background: rgba(15, 17, 24, 0.78);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+
+  z-index: $z-timeline;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+}
+
+/* ==========================================================================
+   REVEAL
+   ========================================================================== */
+
+.scrubber.is-in {
+  opacity: 1;
+
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   TIMECODE
+   ========================================================================== */
+
+.scrubber__tc {
+  width: 120px;
+
+  flex-shrink: 0;
+
+  font-family: $font-mono;
+
+  font-size: 0.8rem;
+
+  color: var(--text-muted);
+
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   TRACK
+   ========================================================================== */
+
+.scrubber__track {
+  position: relative;
+
+  flex: 1;
+
+  height: 8px;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   TICKS
+   ========================================================================== */
+
+.scrubber__ticks {
+  position: absolute;
+  inset: 0;
+
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.18) 0,
+    rgba(255, 255, 255, 0.18) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+}
+
+/* ==========================================================================
+   PROGRESS
+   ========================================================================== */
+
+.scrubber__progress {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 0%;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    rgb(var(--accent-rgb)),
+    rgba(var(--accent-rgb), 0.5)
+  );
+
+  transition: width 0.1s linear;
+}
+
+/* ==========================================================================
+   PLAYHEAD
+   ========================================================================== */
+
+.scrubber__playhead {
+  position: absolute;
+
+  top: 50%;
+  left: 0;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: rgb(var(--accent-rgb));
+
+  border: 2px solid #fff;
+
+  transform: translate(-50%, -50%);
+
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.45);
+
+  transition: left 0.1s linear;
+}
+
+/* ==========================================================================
+   FPS
+   ========================================================================== */
+
+.scrubber__fps {
+  width: 60px;
+
+  flex-shrink: 0;
+
+  text-align: right;
+
+  font-family: $font-mono;
+
+  font-size: 0.8rem;
+
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   HOVER
+   ========================================================================== */
+
+.scrubber:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+
+  background: rgba(20, 22, 30, 0.88);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@include tablet {
+  .scrubber {
+    width: calc(100% - 1rem);
+
+    gap: 1rem;
+
+    padding: 0.8rem 1rem;
+  }
+
+  .scrubber__tc,
+  .scrubber__fps {
+    display: none;
+  }
+}

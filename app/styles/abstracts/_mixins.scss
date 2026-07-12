@@ -1,0 +1,205 @@
+@use "variables" as *;
+
+/* ==========================================================================
+   MEDIA QUERIES
+   ========================================================================== */
+
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: #{$laptop}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+/* ==========================================================================
+   FLEX
+   ========================================================================== */
+
+@mixin flex($justify: center, $align: center, $direction: row, $gap: 0) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+/* ==========================================================================
+   GRID
+   ========================================================================== */
+
+@mixin grid($columns: 2, $gap: 2rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  gap: $gap;
+}
+
+/* ==========================================================================
+   GLASSMORPHISM
+   ========================================================================== */
+
+@mixin glass($bg: rgba(255, 255, 255, 0.05), $blur: $blur-md) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+
+  border: 1px solid $border;
+}
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
+@mixin card {
+  @include glass();
+
+  border-radius: $radius-lg;
+
+  box-shadow: $shadow-md;
+}
+
+/* ==========================================================================
+   ABSOLUTE CENTER
+   ========================================================================== */
+
+@mixin absolute-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+/* ==========================================================================
+   FILL
+   ========================================================================== */
+
+@mixin fill {
+  position: absolute;
+
+  inset: 0;
+}
+
+/* ==========================================================================
+   BUTTON
+   ========================================================================== */
+
+@mixin button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.95rem 1.4rem;
+
+  border-radius: $radius-full;
+
+  border: 1px solid $border;
+
+  transition: $transition-base;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   HOVER LIFT
+   ========================================================================== */
+
+@mixin hover-lift($distance: -6px) {
+  transition: $transition-base;
+
+  &:hover {
+    transform: translateY($distance);
+  }
+}
+
+/* ==========================================================================
+   TEXT GRADIENT
+   ========================================================================== */
+
+@mixin text-gradient($from: $primary, $to: $secondary) {
+  background: linear-gradient(90deg, $from, $to);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+}
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+@mixin scrollbar($size: 8px) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* ==========================================================================
+   TRANSITIONS
+   ========================================================================== */
+
+@mixin transition($properties: all, $duration: 0.35s, $ease: $ease) {
+  transition: $properties $duration $ease;
+}
+
+/* ==========================================================================
+   ANIMATION FILL
+   ========================================================================== */
+
+@mixin animate-in($y: 32px) {
+  opacity: 0;
+
+  transform: translateY($y);
+
+  transition:
+    opacity 0.8s $ease,
+    transform 0.8s $ease;
+
+  &.is-in {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   CLAMP FONT
+   ========================================================================== */
+
+@mixin fluid($min, $preferred, $max) {
+  font-size: clamp($min, $preferred, $max);
+}

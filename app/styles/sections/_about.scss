@@ -1,0 +1,347 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+
+.about {
+  position: relative;
+}
+
+/* ==========================================================================
+   GRID
+   ========================================================================== */
+
+.about__grid {
+  display: grid;
+
+  grid-template-columns: 480px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+/* ==========================================================================
+   IMAGE
+   ========================================================================== */
+
+.origin {
+  position: relative;
+
+  width: 100%;
+}
+
+.origin__float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.origin__frame {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  border: 1px solid var(--border);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.origin__frame img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  transition:
+    transform 0.7s ease,
+    filter 0.5s ease;
+}
+
+.origin:hover img {
+  transform: scale(1.05);
+}
+
+.origin__marquee {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    transparent,
+    rgba(255, 255, 255, 0.02),
+    transparent
+  );
+
+  animation: marquee 5s linear infinite;
+}
+
+/* ==========================================================================
+   FRAME CORNERS
+   ========================================================================== */
+
+.origin__h {
+  position: absolute;
+
+  width: 28px;
+  height: 28px;
+}
+
+.origin__h::before,
+.origin__h::after {
+  content: "";
+
+  position: absolute;
+
+  background: rgb(var(--accent-rgb));
+}
+
+.origin__h::before {
+  width: 28px;
+  height: 2px;
+}
+
+.origin__h::after {
+  width: 2px;
+  height: 28px;
+}
+
+.origin__h--tl {
+  top: 16px;
+  left: 16px;
+}
+
+.origin__h--tr {
+  top: 16px;
+  right: 16px;
+  transform: rotate(90deg);
+}
+
+.origin__h--bl {
+  bottom: 16px;
+  left: 16px;
+  transform: rotate(-90deg);
+}
+
+.origin__h--br {
+  bottom: 16px;
+  right: 16px;
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   FILE TAB
+   ========================================================================== */
+
+.origin__tab {
+  position: absolute;
+
+  left: 24px;
+  bottom: -18px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 0.85rem 1.3rem;
+
+  border-radius: 999px;
+
+  background: rgba(15, 18, 28, 0.92);
+
+  border: 1px solid var(--border);
+
+  backdrop-filter: blur(16px);
+
+  font-size: 0.85rem;
+}
+
+.origin__eye {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: rgb(var(--accent-rgb));
+
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.45);
+}
+
+/* ==========================================================================
+   BUBBLE
+   ========================================================================== */
+
+.origin__bubble {
+  position: absolute;
+
+  top: -18px;
+  right: -10px;
+
+  padding: 0.75rem 1rem;
+
+  border-radius: 999px;
+
+  background: rgb(var(--accent-rgb));
+
+  color: #fff;
+
+  font-size: 0.8rem;
+
+  font-weight: 600;
+
+  transform: rotate(6deg);
+
+  box-shadow: 0 18px 35px rgba(var(--accent-rgb), 0.3);
+}
+
+/* ==========================================================================
+   TEXT
+   ========================================================================== */
+
+.about__text {
+  max-width: 720px;
+}
+
+.about__text h2 {
+  margin-bottom: 1.75rem;
+
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+
+  line-height: 1.1;
+}
+
+.about__text p {
+  margin-bottom: 1.4rem;
+
+  color: var(--text-muted);
+
+  line-height: 1.9;
+}
+
+.grad {
+  background: linear-gradient(90deg, rgb(var(--accent-rgb)), #fff);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   STATS
+   ========================================================================== */
+
+.about__stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 1.5rem;
+
+  margin-top: 3rem;
+}
+
+.stat {
+  padding: 1.5rem;
+
+  border-radius: 20px;
+
+  border: 1px solid var(--border);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  text-align: center;
+
+  transition: 0.35s;
+}
+
+.stat:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(var(--accent-rgb), 0.4);
+}
+
+.stat strong {
+  display: block;
+
+  margin-bottom: 0.35rem;
+
+  font-size: clamp(2rem, 4vw, 3rem);
+
+  color: rgb(var(--accent-rgb));
+}
+
+.stat span {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ANIMATION
+   ========================================================================== */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@include desktop {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .origin {
+    max-width: 500px;
+
+    margin-inline: auto;
+  }
+
+  .about__text {
+    max-width: none;
+  }
+}
+
+@include tablet {
+  .about__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .about__text h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .origin__bubble {
+    display: none;
+  }
+
+  .origin__tab {
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+}

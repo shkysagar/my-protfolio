@@ -1,0 +1,262 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+html {
+  font-size: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   BODY
+   -------------------------------------------------------------------------- */
+
+body {
+  font-family: $font-sans;
+  font-size: $fs-md;
+  line-height: 1.7;
+  font-weight: $fw-regular;
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   HEADINGS
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-display;
+  font-weight: $fw-bold;
+  line-height: 1.05;
+  color: var(--text);
+  letter-spacing: -0.04em;
+}
+
+h1 {
+  @include fluid(3rem, 8vw, 7rem);
+}
+
+h2 {
+  @include fluid(2.25rem, 5vw, 4.5rem);
+}
+
+h3 {
+  @include fluid(1.75rem, 3vw, 3rem);
+}
+
+h4 {
+  @include fluid(1.4rem, 2.2vw, 2.25rem);
+}
+
+h5 {
+  @include fluid(1.15rem, 1.6vw, 1.5rem);
+}
+
+h6 {
+  @include fluid(1rem, 1.2vw, 1.25rem);
+}
+
+/* --------------------------------------------------------------------------
+   PARAGRAPH
+   -------------------------------------------------------------------------- */
+
+p {
+  max-width: 70ch;
+
+  color: var(--text-muted);
+
+  margin-top: 1.25rem;
+
+  font-size: clamp(1rem, 1vw + 0.8rem, 1.125rem);
+
+  line-height: 1.8;
+}
+
+/* --------------------------------------------------------------------------
+   LINKS
+   -------------------------------------------------------------------------- */
+
+a {
+  color: inherit;
+
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: rgb(var(--accent-rgb));
+}
+
+/* --------------------------------------------------------------------------
+   LISTS
+   -------------------------------------------------------------------------- */
+
+ul,
+ol {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+}
+
+li {
+  margin: 0.35rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   EMPHASIS
+   -------------------------------------------------------------------------- */
+
+strong {
+  font-weight: $fw-semibold;
+}
+
+em {
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   CODE
+   -------------------------------------------------------------------------- */
+
+code,
+pre,
+kbd {
+  font-family: $font-mono;
+}
+
+code {
+  background: rgba(255, 255, 255, 0.06);
+
+  border-radius: 0.35rem;
+
+  padding: 0.15rem 0.4rem;
+
+  font-size: 0.9em;
+}
+
+pre {
+  margin-top: 1.5rem;
+
+  overflow: auto;
+
+  padding: 1.5rem;
+
+  border-radius: $radius-lg;
+
+  background: var(--surface);
+}
+
+pre code {
+  background: transparent;
+
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   BLOCKQUOTE
+   -------------------------------------------------------------------------- */
+
+blockquote {
+  margin: 2rem 0;
+
+  padding-left: 1.5rem;
+
+  border-left: 4px solid rgb(var(--accent-rgb));
+
+  color: var(--text-muted);
+
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   SMALL
+   -------------------------------------------------------------------------- */
+
+small {
+  font-size: 0.875rem;
+
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   MONO
+   -------------------------------------------------------------------------- */
+
+.mono {
+  font-family: $font-mono;
+}
+
+/* --------------------------------------------------------------------------
+   GRADIENT TEXT
+   -------------------------------------------------------------------------- */
+
+.grad {
+  background: linear-gradient(90deg, rgb(var(--accent-rgb)), #38bdf8);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   UPPERCASE LABEL
+   -------------------------------------------------------------------------- */
+
+.label {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.2em;
+
+  font-size: 0.75rem;
+
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   TAG
+   -------------------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 0.45rem 0.8rem;
+
+  border-radius: 999px;
+
+  border: 1px solid var(--border);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  color: var(--text-muted);
+
+  font-size: 0.8rem;
+
+  font-weight: $fw-medium;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+
+@include tablet {
+  h1 {
+    line-height: 1.1;
+  }
+
+  p {
+    max-width: 100%;
+  }
+}

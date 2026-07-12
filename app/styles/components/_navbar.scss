@@ -1,0 +1,216 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   MENUBAR
+   ========================================================================== */
+
+.menubar {
+  position: fixed;
+
+  top: 24px;
+  left: 50%;
+
+  transform: translateX(-50%) translateY(-40px);
+
+  width: min(1200px, calc(100% - 2rem));
+
+  height: var(--navbar-height);
+
+  padding-inline: 1.25rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  z-index: $z-navbar;
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  background: rgba(15, 17, 24, 0.72);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+
+  opacity: 0;
+
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+}
+
+/* ==========================================================================
+   REVEAL
+   ========================================================================== */
+
+.menubar.is-in {
+  opacity: 1;
+
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   BRAND
+   ========================================================================== */
+
+.menubar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.menubar__badge {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: rgb(var(--accent-rgb));
+
+  color: #fff;
+
+  font-weight: 700;
+
+  font-size: 0.85rem;
+
+  letter-spacing: 0.08em;
+
+  transition: 0.35s;
+}
+
+.menubar__brand:hover {
+  .menubar__badge {
+    transform: rotate(8deg) scale(1.08);
+
+    box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.35);
+  }
+}
+
+/* ==========================================================================
+   MENU
+   ========================================================================== */
+
+.menubar__menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menubar__menu a {
+  position: relative;
+
+  color: var(--text-muted);
+
+  font-size: 0.9rem;
+
+  font-weight: 500;
+
+  transition: 0.35s;
+}
+
+.menubar__menu a:hover {
+  color: var(--text);
+}
+
+.menubar__menu a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -8px;
+
+  width: 100%;
+  height: 2px;
+
+  border-radius: 99px;
+
+  background: rgb(var(--accent-rgb));
+
+  transform: scaleX(0);
+
+  transform-origin: center;
+
+  transition: 0.35s;
+}
+
+.menubar__menu a:hover::after,
+.menubar__menu a.active::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   STATUS
+   ========================================================================== */
+
+.menubar__status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  font-size: 0.85rem;
+
+  color: var(--text-muted);
+
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   LIVE DOT
+   ========================================================================== */
+
+.dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+}
+
+.dot--live {
+  background: #22c55e;
+
+  box-shadow: 0 0 0 rgba(34, 197, 94, 0.5);
+
+  animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   GLASS HOVER
+   ========================================================================== */
+
+.menubar:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+
+  background: rgba(20, 22, 30, 0.82);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@include tablet {
+  .menubar {
+    width: calc(100% - 1rem);
+
+    padding-inline: 1rem;
+  }
+
+  .menubar__menu {
+    display: none;
+  }
+
+  .menubar__status {
+    display: none;
+  }
+}

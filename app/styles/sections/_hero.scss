@@ -1,0 +1,347 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.hero {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 100vh;
+
+  width: min(1600px, calc(100% - 4rem));
+
+  margin-inline: auto;
+
+  padding-block: clamp(8rem, 12vw, 10rem);
+
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   BACKGROUND GLOW
+   ========================================================================== */
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at 50% 35%,
+    rgba(var(--accent-rgb), 0.12),
+    transparent 65%
+  );
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   META
+   ========================================================================== */
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   TITLE
+   ========================================================================== */
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+
+  line-height: 0.88;
+
+  text-transform: uppercase;
+
+  user-select: none;
+}
+
+.hero__title .glitch {
+  position: relative;
+
+  display: inline-block;
+
+  width: fit-content;
+
+  font-size: clamp(4rem, 12vw, 9rem);
+
+  font-weight: 900;
+
+  letter-spacing: -0.05em;
+
+  color: var(--text);
+
+  text-shadow: 0 0 40px rgba(var(--accent-rgb), 0.18);
+}
+
+/* ==========================================================================
+   GLITCH
+   ========================================================================== */
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.45;
+}
+
+.glitch::before {
+  color: #ff0055;
+
+  transform: translate(-2px, 0);
+
+  clip-path: inset(0 0 52% 0);
+
+  animation: glitchTop 3s infinite linear alternate;
+}
+
+.glitch::after {
+  color: #00ffff;
+
+  transform: translate(2px, 0);
+
+  clip-path: inset(52% 0 0 0);
+
+  animation: glitchBottom 3s infinite linear alternate;
+}
+
+/* ==========================================================================
+   TAGLINE
+   ========================================================================== */
+
+.hero__tagline {
+  width: min(700px, 100%);
+
+  margin-top: 2rem;
+
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+
+  line-height: 1.9;
+
+  color: var(--text-muted);
+}
+
+.hero__tagline em {
+  font-style: normal;
+
+  color: rgb(var(--accent-rgb));
+}
+
+/* ==========================================================================
+   CTA
+   ========================================================================== */
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+
+  margin-top: 3rem;
+}
+
+/* ==========================================================================
+   SCROLL
+   ========================================================================== */
+
+.hero__scrollhint {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.75rem;
+
+  margin-top: 5rem;
+
+  width: fit-content;
+
+  color: var(--text-muted);
+
+  font-size: 0.85rem;
+}
+
+.scrollhint__line {
+  width: 180px;
+
+  height: 2px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border-radius: 999px;
+}
+
+.scrollhint__line span {
+  display: block;
+
+  width: 35%;
+
+  height: 100%;
+
+  background: rgb(var(--accent-rgb));
+
+  animation: scrollLine 2s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   CORNERS
+   ========================================================================== */
+
+.hero__corner {
+  position: absolute;
+
+  font-family: $font-mono;
+
+  font-size: 0.72rem;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.hero__corner--tl {
+  top: 2rem;
+  left: 0;
+}
+
+.hero__corner--tr {
+  top: 2rem;
+  right: 0;
+}
+
+.hero__corner--bl {
+  bottom: 2rem;
+  left: 0;
+}
+
+.hero__corner--br {
+  bottom: 2rem;
+  right: 0;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes glitchTop {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-3px, -2px);
+  }
+
+  40% {
+    transform: translate(3px, 2px);
+  }
+
+  60% {
+    transform: translate(-2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -1px);
+  }
+}
+
+@keyframes glitchBottom {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  25% {
+    transform: translate(3px, 2px);
+  }
+
+  50% {
+    transform: translate(-3px, -1px);
+  }
+
+  75% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@include desktop {
+  .hero {
+    min-height: auto;
+  }
+}
+
+@include tablet {
+  .hero {
+    width: calc(100% - 2rem);
+
+    padding-top: 8rem;
+
+    padding-bottom: 5rem;
+  }
+
+  .hero__title .glitch {
+    font-size: clamp(3.2rem, 16vw, 6rem);
+  }
+
+  .hero__cta {
+    flex-direction: column;
+  }
+
+  .hero__cta .btn {
+    width: 100%;
+  }
+
+  .hero__scrollhint {
+    display: none;
+  }
+
+  .hero__corner {
+    display: none;
+  }
+}

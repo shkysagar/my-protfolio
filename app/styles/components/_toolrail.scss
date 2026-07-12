@@ -1,0 +1,215 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   TOOL RAIL
+   ========================================================================== */
+
+.toolrail {
+  position: fixed;
+
+  top: 50%;
+  left: 2rem;
+
+  transform: translateY(-50%) translateX(-30px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0.75rem;
+
+  padding: 1rem 0.75rem;
+
+  border-radius: 999px;
+
+  border: 1px solid var(--border);
+
+  background: rgba(15, 17, 24, 0.72);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+
+  z-index: $z-toolrail;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+}
+
+/* ==========================================================================
+   REVEAL
+   ========================================================================== */
+
+.toolrail.is-in {
+  opacity: 1;
+
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ==========================================================================
+   TOOL BUTTON
+   ========================================================================== */
+
+.tool {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 14px;
+
+  border: 1px solid transparent;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  cursor: pointer;
+
+  transition: 0.35s;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   ICON
+   ========================================================================== */
+
+.tool svg {
+  width: 22px;
+  height: 22px;
+
+  stroke: currentColor;
+  stroke-width: 1.7;
+
+  fill: none;
+
+  transition: inherit;
+}
+
+/* ==========================================================================
+   HOVER
+   ========================================================================== */
+
+.tool:hover {
+  color: var(--text);
+
+  background: rgba(255, 255, 255, 0.06);
+
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   ACTIVE
+   ========================================================================== */
+
+.tool.is-active {
+  color: white;
+
+  background: rgb(var(--accent-rgb));
+
+  box-shadow: 0 0 22px rgba(var(--accent-rgb), 0.35);
+}
+
+.tool.is-active svg {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   DIVIDER
+   ========================================================================== */
+
+.toolrail__div {
+  width: 26px;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  margin: 0.25rem 0;
+}
+
+/* ==========================================================================
+   COLOR SWATCH
+   ========================================================================== */
+
+.tool--swatch {
+  background: linear-gradient(135deg, rgb(var(--accent-rgb)), #38bdf8);
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255, 255, 255, 0.18);
+}
+
+.tool--swatch:hover {
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   TOOLTIP
+   ========================================================================== */
+
+.tool::after {
+  content: attr(data-cursor);
+
+  position: absolute;
+
+  left: calc(100% + 14px);
+  top: 50%;
+
+  transform: translateY(-50%) translateX(-10px);
+
+  padding: 0.45rem 0.75rem;
+
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  color: white;
+
+  font-size: 0.72rem;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: 0.25s;
+}
+
+.tool:hover::after {
+  opacity: 1;
+
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@include tablet {
+  .toolrail {
+    left: 1rem;
+
+    padding: 0.75rem 0.5rem;
+  }
+
+  .tool {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tool svg {
+    width: 20px;
+    height: 20px;
+  }
+}
