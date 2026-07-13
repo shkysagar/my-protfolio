@@ -1,0 +1,280 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   TOOLKIT
+   ========================================================================== */
+
+.toolkit {
+  position: relative;
+}
+
+/* ==========================================================================
+   INTRO
+   ========================================================================== */
+
+.toolkit__intro {
+  max-width: 760px;
+
+  margin-bottom: 4rem;
+}
+
+.toolkit__intro h2 {
+  margin-bottom: 1rem;
+
+  font-size: clamp(2.5rem, 5vw, 4rem);
+
+  line-height: 1.1;
+}
+
+.toolkit__intro p {
+  color: var(--text-muted);
+
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   GRID
+   ========================================================================== */
+
+.toolkit__grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 2rem;
+}
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
+.toolkit__card {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 2rem;
+
+  border-radius: 24px;
+
+  border: 1px solid var(--border);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.4s,
+    border-color 0.4s,
+    box-shadow 0.4s;
+}
+
+.toolkit__card:hover {
+  transform: translateY(-10px);
+
+  border-color: rgba(var(--accent-rgb), 0.4);
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   ICON
+   ========================================================================== */
+
+.toolkit__icon {
+  display: grid;
+
+  place-items: center;
+
+  width: 64px;
+  height: 64px;
+
+  margin-bottom: 1.5rem;
+
+  border-radius: 18px;
+
+  background: rgba(var(--accent-rgb), 0.08);
+
+  color: rgb(var(--accent-rgb));
+}
+
+.toolkit__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* ==========================================================================
+   TITLE
+   ========================================================================== */
+
+.toolkit__title {
+  margin-bottom: 0.75rem;
+
+  font-size: 1.35rem;
+
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   DESCRIPTION
+   ========================================================================== */
+
+.toolkit__description {
+  color: var(--text-muted);
+
+  line-height: 1.8;
+
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   PROGRESS
+   ========================================================================== */
+
+.toolkit__progress {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 0.75rem;
+}
+
+.toolkit__label {
+  font-size: 0.9rem;
+
+  color: var(--text-muted);
+}
+
+.toolkit__percent {
+  color: rgb(var(--accent-rgb));
+
+  font-family: $font-mono;
+
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   BAR
+   ========================================================================== */
+
+.toolkit__bar {
+  position: relative;
+
+  overflow: hidden;
+
+  height: 8px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.toolkit__fill {
+  width: 0;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    rgb(var(--accent-rgb)),
+    rgba(var(--accent-rgb), 0.55)
+  );
+
+  transition: width 1.2s ease;
+}
+
+/* ==========================================================================
+   TAGS
+   ========================================================================== */
+
+.toolkit__tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.6rem;
+
+  margin-top: 2rem;
+}
+
+.toolkit__tag {
+  padding: 0.45rem 0.8rem;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  font-size: 0.75rem;
+
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   HOVER GLOW
+   ========================================================================== */
+
+.toolkit__card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -30%;
+
+  background: radial-gradient(
+    circle,
+    rgba(var(--accent-rgb), 0.15),
+    transparent 70%
+  );
+
+  opacity: 0;
+
+  transition: opacity 0.4s;
+}
+
+.toolkit__card:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   NUMBER
+   ========================================================================== */
+
+.toolkit__number {
+  position: absolute;
+
+  top: 1.5rem;
+  right: 1.5rem;
+
+  font-size: 3.5rem;
+
+  font-weight: 900;
+
+  color: rgba(255, 255, 255, 0.05);
+
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@include desktop {
+  .toolkit__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include tablet {
+  .toolkit__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolkit__card {
+    padding: 1.5rem;
+  }
+}

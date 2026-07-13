@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 
 interface GridTrailProps {
@@ -13,15 +15,17 @@ export default function GridTrail({
   gap = 3,
   maxTrail = 6,
 }: GridTrailProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+
     if (!canvas) return;
 
     if (window.matchMedia("(max-width:860px)").matches) return;
 
     const ctx = canvas.getContext("2d");
+
     if (!ctx) return;
 
     const FALLOFF = 0.62;
@@ -41,13 +45,17 @@ export default function GridTrail({
     let animationFrame = 0;
 
     function resize() {
+      const currentCanvas = canvasRef.current;
+
+      if (!currentCanvas) return;
+
       dpr = Math.min(2, window.devicePixelRatio || 1);
 
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
+      currentCanvas.width = window.innerWidth * dpr;
+      currentCanvas.height = window.innerHeight * dpr;
 
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
+      currentCanvas.style.width = `${window.innerWidth}px`;
+      currentCanvas.style.height = `${window.innerHeight}px`;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
@@ -83,18 +91,19 @@ export default function GridTrail({
       const x = e.clientX + window.scrollX;
       const y = e.clientY + window.scrollY;
 
-      if (lastX == null) {
+      if (lastX === null) {
         lastX = x;
         lastY = y;
       }
 
-      const distance = Math.hypot(x - lastX!, y - lastY!);
+      const distance = Math.hypot(x - lastX, y - (lastY ?? y));
 
       const steps = Math.max(1, Math.round(distance / (cell * 0.6)));
 
       for (let i = 1; i <= steps; i++) {
-        const px = lastX! + ((x - lastX!) * i) / steps;
-        const py = lastY! + ((y - lastY!) * i) / steps;
+        const px = lastX + ((x - lastX) * i) / steps;
+
+        const py = (lastY ?? y) + ((y - (lastY ?? y)) * i) / steps;
 
         addCell(Math.floor(px / cell), Math.floor(py / cell), now);
       }
@@ -126,6 +135,7 @@ export default function GridTrail({
 
         const x = t.c * cell + gap - sx;
         const y = t.r * cell + gap - sy;
+
         const s = cell - gap * 2;
 
         if (
@@ -138,9 +148,11 @@ export default function GridTrail({
         }
 
         ctx.fillStyle = `rgba(${accent},${intensity * 0.06})`;
+
         ctx.fillRect(x, y, s, s);
 
         ctx.strokeStyle = `rgba(${accent},${intensity * 0.36})`;
+
         ctx.strokeRect(x + 0.5, y + 0.5, s - 1, s - 1);
       }
 
@@ -162,15 +174,15 @@ export default function GridTrail({
       cancelAnimationFrame(animationFrame);
 
       window.removeEventListener("resize", resize);
-
       window.removeEventListener("mousemove", mouseMove);
     };
   }, [accent, cell, gap, maxTrail]);
 
   return (
     <>
-      <div className="grain" aria-hidden="true"></div>
-      <div className="canvas-grid" aria-hidden="true"></div>
+      <div className="grain" aria-hidden="true" />
+      <div className="canvas-grid" aria-hidden="true" />
+
       <canvas
         ref={canvasRef}
         className="pointer-events-none fixed inset-0 z-10 grid-trail"

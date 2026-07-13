@@ -1,0 +1,304 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* ==========================================================================
+   WORK
+   ========================================================================== */
+
+.work {
+  position: relative;
+}
+
+/* ==========================================================================
+   INTRO
+   ========================================================================== */
+
+.work__intro {
+  max-width: 720px;
+
+  margin-bottom: 4rem;
+}
+
+.work__intro h2 {
+  margin-bottom: 1rem;
+
+  font-size: clamp(2.5rem, 5vw, 4rem);
+
+  line-height: 1.1;
+}
+
+.work__intro p {
+  color: var(--text-muted);
+
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   GRID
+   ========================================================================== */
+
+.work__grid {
+  display: grid;
+
+  grid-template-columns: repeat(12, 1fr);
+
+  gap: 2rem;
+}
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
+.work__card {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  border: 1px solid var(--border);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.45s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+  cursor: pointer;
+}
+
+.work__card:hover {
+  transform: translateY(-10px);
+
+  border-color: rgba(var(--accent-rgb), 0.4);
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   FEATURED
+   ========================================================================== */
+
+.work__card--featured {
+  grid-column: span 8;
+}
+
+.work__card:not(.work__card--featured) {
+  grid-column: span 4;
+}
+
+/* ==========================================================================
+   IMAGE
+   ========================================================================== */
+
+.work__image {
+  position: relative;
+
+  overflow: hidden;
+
+  aspect-ratio: 16 / 10;
+}
+
+.work__image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.8s ease,
+    filter 0.4s ease;
+}
+
+.work__card:hover img {
+  transform: scale(1.08);
+
+  filter: brightness(0.8);
+}
+
+/* ==========================================================================
+   OVERLAY
+   ========================================================================== */
+
+.work__overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+
+  opacity: 0;
+
+  transition: 0.4s;
+}
+
+.work__card:hover .work__overlay {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+
+.work__content {
+  padding: 2rem;
+}
+
+.work__content h3 {
+  margin-bottom: 0.75rem;
+
+  font-size: 1.6rem;
+}
+
+.work__content p {
+  color: var(--text-muted);
+
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   TAGS
+   ========================================================================== */
+
+.work__tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.75rem;
+
+  margin: 1.5rem 0;
+}
+
+.work__tag {
+  padding: 0.45rem 0.85rem;
+
+  border-radius: 999px;
+
+  background: rgba(var(--accent-rgb), 0.08);
+
+  color: rgb(var(--accent-rgb));
+
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.work__footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-top: 2rem;
+}
+
+.work__year {
+  color: var(--text-muted);
+
+  font-size: 0.9rem;
+}
+
+.work__link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  color: rgb(var(--accent-rgb));
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.work__card:hover .work__link {
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   NUMBER
+   ========================================================================== */
+
+.work__number {
+  position: absolute;
+
+  top: 1.5rem;
+  right: 1.5rem;
+
+  font-size: clamp(3rem, 5vw, 5rem);
+
+  font-weight: 900;
+
+  color: rgba(255, 255, 255, 0.06);
+
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   BADGE
+   ========================================================================== */
+
+.work__badge {
+  position: absolute;
+
+  top: 1.5rem;
+  left: 1.5rem;
+
+  padding: 0.5rem 1rem;
+
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  backdrop-filter: blur(12px);
+
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   BUTTON
+   ========================================================================== */
+
+.work__actions {
+  margin-top: 5rem;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@include desktop {
+  .work__card,
+  .work__card--featured {
+    grid-column: span 12;
+  }
+}
+
+@include tablet {
+  .work__content {
+    padding: 1.5rem;
+  }
+
+  .work__footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 1rem;
+  }
+
+  .work__intro h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+}

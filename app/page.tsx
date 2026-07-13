@@ -13,6 +13,7 @@ import Hero from "@/sections/Hero";
 import About from "@/sections/About";
 
 import useReveal from "@/hooks/useReveal";
+import Work from "@/sections/Work";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -36,6 +37,7 @@ export default function Home() {
             <Hero />
 
             <About />
+            <Work />
 
             <section id="work">
               <h2>Work</h2>

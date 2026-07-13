@@ -29,10 +29,10 @@
   /* role aliases used across the UI */
   --ps: var(--blue);
   --pr: var(--orange);
-  --ae: var(--pink);
+  --ae: var(--blue);
   --ai: var(--orange);
   --live: var(--blue);
-  --accent: var(--pink);
+  --accent: var(--blue);
 
   --font-display: "Syne", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
@@ -299,11 +299,11 @@ body.cursor-hover .cursor__label {
   place-items: center;
   font-size: 13px;
   font-weight: 800;
-  color: var(--on-pink);
-  background: var(--pink);
+  color: var(--on-blue);
+  background: var(--blue);
 }
 .menubar__name .dim {
-  color: var(--pink);
+  color: var(--blue);
 }
 .menubar__menu {
   display: flex;
@@ -426,7 +426,7 @@ body.cursor-hover .cursor__label {
   margin: 6px 0;
 }
 .tool--swatch {
-  background: var(--pink);
+  background: var(--blue);
   border: 2px solid var(--panel);
   box-shadow: 0 0 0 1px var(--line);
 }
@@ -571,8 +571,8 @@ body.cursor-hover .cursor__label {
   color: var(--text);
 }
 .layers__list li.is-active .eye {
-  background: var(--pink);
-  border-color: var(--pink);
+  background: var(--blue);
+  border-color: var(--blue);
 }
 .eye {
   width: 13px;
@@ -626,8 +626,8 @@ main {
   color: var(--muted);
 }
 .section__label span {
-  color: var(--on-pink);
-  background: var(--pink);
+  color: var(--on-blue);
+  background: var(--blue);
   border-radius: 6px;
   padding: 3px 7px;
   font-size: 11px;
@@ -641,7 +641,7 @@ h2 {
   letter-spacing: -0.02em;
 }
 .grad {
-  color: var(--pink);
+  color: var(--blue);
 }
 
 /* =================================================================
@@ -686,7 +686,7 @@ h2 {
   display: block;
 }
 .hero__title .glitch:nth-child(2) {
-  color: var(--pink);
+  color: var(--blue);
 }
 .hero__title .glitch--alt {
   color: transparent;
@@ -712,7 +712,7 @@ h2 {
 }
 .glitch.is-glitch::after {
   opacity: 0.9;
-  color: var(--pink);
+  color: var(--blue);
   transform: translate(4px, -2px);
   -webkit-text-stroke: 0;
 }
@@ -754,14 +754,14 @@ h2 {
   background: var(--panel-2);
 }
 .btn--primary {
-  background: var(--pink);
+  background: var(--blue);
   border-color: transparent;
-  color: var(--on-pink);
+  color: var(--on-blue);
   font-weight: 700;
 }
 .btn--primary:hover {
   box-shadow: 0 12px 30px rgba(var(--pink-rgb), 0.34);
-  background: var(--pink);
+  background: var(--blue);
 }
 .btn--lg {
   padding: 16px 28px;
@@ -791,7 +791,7 @@ h2 {
   display: block;
   height: 100%;
   width: 40%;
-  background: var(--pink);
+  background: var(--blue);
   animation: slide 2s var(--ease) infinite;
 }
 @keyframes slide {
@@ -862,7 +862,7 @@ h2 {
   font-family: var(--font-display);
   font-size: 2.4rem;
   font-weight: 700;
-  color: var(--pink);
+  color: var(--blue);
 }
 .stat span {
   font-family: var(--font-mono);
@@ -943,7 +943,7 @@ h2 {
   z-index: 3;
   width: 9px;
   height: 9px;
-  background: var(--pink);
+  background: var(--blue);
   border: 1.5px solid var(--bg);
   border-radius: 2px;
 }
@@ -985,7 +985,7 @@ h2 {
 .origin__eye {
   width: 11px;
   height: 11px;
-  border: 1.5px solid var(--pink);
+  border: 1.5px solid var(--blue);
   border-radius: 50%;
   position: relative;
 }
@@ -994,7 +994,7 @@ h2 {
   position: absolute;
   inset: 3px;
   border-radius: 50%;
-  background: var(--pink);
+  background: var(--blue);
 }
 /* speech bubble */
 .origin__bubble {
@@ -1007,8 +1007,8 @@ h2 {
   font-size: 0.8rem;
   line-height: 1.2;
   max-width: 120px;
-  color: var(--on-pink);
-  background: var(--pink);
+  color: var(--on-blue);
+  background: var(--blue);
   padding: 9px 13px;
   border-radius: 14px 14px 14px 3px;
   transform: rotate(5deg) scale(0.7);
@@ -1806,7 +1806,7 @@ html.case-lock body {
   margin-right: 52%;
 }
 .clip--v1::before {
-  background: var(--pink);
+  background: var(--blue);
 }
 .clip__title {
   font-family: var(--font-display);
@@ -1937,7 +1937,7 @@ html.case-lock body {
 }
 .rec-col h3::before {
   content: "▸ ";
-  color: var(--pink);
+  color: var(--blue);
 }
 .rec-list {
   list-style: none;
@@ -2172,7 +2172,7 @@ html.case-lock body {
   color: var(--muted);
 }
 .picker__head #pickerHex {
-  color: var(--pink);
+  color: var(--blue);
   letter-spacing: 0.5px;
 }
 .picker__swatches {
@@ -2301,8 +2301,8 @@ body[data-tool="crop"] {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.4rem, 3vw, 2.4rem);
-  color: var(--pink);
-  caret-color: var(--pink);
+  color: var(--blue);
+  caret-color: var(--blue);
   outline: none;
   white-space: nowrap;
   line-height: 1.1;
